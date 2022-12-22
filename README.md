@@ -1,26 +1,39 @@
 # Tokopedia Simple Scraper
 
-**Tokopedia Simple Scraper** is a project to provide products data of Tokopedia when doing search such as Product name, Image, Price, Star, Sold, and etc..
+**Tokopedia Simple Scraper** is a project to provide products data of Tokopedia when doing search such as Product Name, Image, Price, Star, Sold, and etc..
 
-## Result Example
+## Usage
 
+To run the script:
+
+```shell
+npm run scrape:tokopedia-search -- --productSearch=[product_name_or_keyword]
+```
+
+Example:
+
+```shell
+npm run scrape:tokopedia-search -- --productSearch="sepatu compass"
+```
+
+Result:
 ```json
 [
-  {
-    "title": "Sepatu Converse All Star HI Undefeated Navy Premium BNIB",
-    "shopName": "im15footwear",
-    "price": "Rp150.000",
-    "img": "https://images.tokopedia.net/img/cache/200-square/product-1/2018/2/23/0/0_9cd8ab30-4e70-45f9-bbec-1415447d324f_1477_1108.jpg",
-    "star": "5.0",
-    "sold": "Terjual 19"
+ {
+    "title": "sepatu Compass Gazelle Low Black White",
+    "shopName": "Elsyz ID",
+    "price": "Rp429.999",
+    "img": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2022/10/17/3c26e6e4-be8a-4af0-acbd-652d275cf25d.jpg",
+    "star": "4.9",
+    "sold": "Terjual 500+"
   },
   {
-    "title": "Nike Air Max / Air Max / Nike Air Max 97 / Airmax 97 / Sepatu Air Max",
-    "shopName": "Hobi Sepatu",
-    "price": "Rp899.000",
-    "img": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2022/8/9/30d90e3e-4697-4e09-9298-e3e1f9edbbf6.jpg",
-    "star": "4.8",
-    "sold": "Terjual 40+"
+    "title": "Sepatu Compass Gazelle High Black White",
+    "shopName": "Elsyz ID",
+    "price": "Rp499.999",
+    "img": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2022/10/17/350e2748-9fdd-455a-891d-10614c63e4dd.jpg",
+    "star": "4.9",
+    "sold": "Terjual 100+"
   },
 ]
 ```
