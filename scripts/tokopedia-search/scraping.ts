@@ -27,6 +27,9 @@ const scrapeTokopedia = async (tokopediaSearchUrl: string) => {
     defaultViewport: null,
   });
   const page = await browser.newPage();
+
+  console.log(`URL: ${pc.green(tokopediaSearchUrl)}`);
+
   await page.goto(tokopediaSearchUrl, {
     waitUntil: "networkidle2",
   });

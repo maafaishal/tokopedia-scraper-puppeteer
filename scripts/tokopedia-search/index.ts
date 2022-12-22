@@ -21,6 +21,7 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 (async function () {
-  const tokopediaSearchUrl = TOKOPEDIA_SEARCH_URL + argv.productSearch;
+  const tokopediaSearchUrl =
+    TOKOPEDIA_SEARCH_URL + encodeURIComponent(argv.productSearch.toLowerCase());
   scrapeTokopedia(tokopediaSearchUrl);
 })();
