@@ -1,13 +1,33 @@
 import puppeteer from "puppeteer";
 import fs from "fs-extra";
+import pc from "picocolors";
 
-(async () => {
+async function autoScroll(page: puppeteer.Page) {
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let totalHeight = 0;
+      const distance = 100;
+      const timer = setInterval(() => {
+        const scrollHeight = document.body.scrollHeight;
+        window.scrollBy(0, distance);
+        totalHeight += distance;
+
+        if (totalHeight >= scrollHeight - window.innerHeight) {
+          clearInterval(timer);
+          resolve(true);
+        }
+      }, 10);
+    });
+  });
+}
+
+const scrapeTokopedia = async (tokopediaSearchUrl: string) => {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,
   });
   const page = await browser.newPage();
-  await page.goto("https://www.tokopedia.com/search?st=product&q=sandal", {
+  await page.goto(tokopediaSearchUrl, {
     waitUntil: "networkidle2",
   });
 
@@ -89,25 +109,9 @@ import fs from "fs-extra";
   }
 
   fs.outputFileSync("results/tokopedia-search.json", JSON.stringify(items));
+  console.log(`${pc.green(`The result: "results/tokopedia-search.json"`)}`);
 
   await browser.close();
-})();
+};
 
-async function autoScroll(page: puppeteer.Page) {
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let totalHeight = 0;
-      const distance = 100;
-      const timer = setInterval(() => {
-        const scrollHeight = document.body.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-
-        if (totalHeight >= scrollHeight - window.innerHeight) {
-          clearInterval(timer);
-          resolve(true);
-        }
-      }, 10);
-    });
-  });
-}
+export default scrapeTokopedia;
