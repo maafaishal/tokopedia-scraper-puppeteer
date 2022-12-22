@@ -40,4 +40,5 @@ Result:
 
 ## Tech Stack
 
+![Puppeteer](https://img.shields.io/badge/puppeteer-01d19d?style=for-the-badge&logo=puppeteer&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
