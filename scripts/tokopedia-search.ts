@@ -11,28 +11,28 @@ import fs from "fs-extra";
     waitUntil: "networkidle2",
   });
 
+  await page.waitForSelector(".prd_container-card");
   await autoScroll(page);
 
   const productHandles = await page.$$(".prd_container-card");
 
   const items = [];
-  let errorTotal = 0;
 
   for (const product of productHandles) {
-    let title = null;
-    let price = null;
-    let img = null;
-    let star = null;
-    let sold = null;
-    let shopName = null;
+    let title: string | null;
+    let price: string | null;
+    let img: string | null;
+    let star: string | null;
+    let sold: string | null;
+    let shopName: string | null;
 
     try {
       title = await page.evaluate(
         (el) => el.querySelector("div[data-testid=spnSRPProdName]").textContent,
         product
       );
-    } catch (error) {
-      errorTotal += 1;
+    } catch {
+      title = null;
     }
 
     try {
@@ -41,8 +41,8 @@ import fs from "fs-extra";
           el.querySelector("div[data-testid=spnSRPProdPrice]").textContent,
         product
       );
-    } catch (error) {
-      errorTotal += 1;
+    } catch {
+      price = null;
     }
 
     try {
@@ -53,8 +53,8 @@ import fs from "fs-extra";
             .getAttribute("src"),
         product
       );
-    } catch (error) {
-      errorTotal += 1;
+    } catch {
+      img = null;
     }
 
     try {
@@ -62,8 +62,8 @@ import fs from "fs-extra";
         (el) => el.querySelector("span.prd_rating-average-text").textContent,
         product
       );
-    } catch (error) {
-      errorTotal += 1;
+    } catch {
+      star = null;
     }
 
     try {
@@ -71,16 +71,16 @@ import fs from "fs-extra";
         (el) => el.querySelector("span.prd_label-integrity").textContent,
         product
       );
-    } catch (error) {
-      errorTotal += 1;
+    } catch {
+      sold = null;
     }
     try {
       shopName = await page.evaluate(
         (el) => el.querySelector("span.prd_link-shop-name").textContent,
         product
       );
-    } catch (error) {
-      errorTotal += 1;
+    } catch {
+      shopName = null;
     }
 
     if (title) {
@@ -88,7 +88,6 @@ import fs from "fs-extra";
     }
   }
 
-  console.log("=+= LOG - errorTotal", errorTotal);
   fs.outputFileSync("results/tokopedia-search.json", JSON.stringify(items));
 
   await browser.close();
