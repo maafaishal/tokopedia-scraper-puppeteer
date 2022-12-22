@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "scrape:tokopedia-search": "ts-node ./scripts/tokopedia-search.ts"
+    "scrape:tokopedia-search": "ts-node ./scripts/tokopedia-search"
   },
   "author": "",
   "license": "ISC",
@@ -13,14 +13,17 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
+    "@types/yargs": "^17.0.17",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "fs-extra": "^11.1.0",
+    "picocolors": "^1.0.0",
     "prettier": "^2.8.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "yargs": "^17.6.2"
   }
 }
