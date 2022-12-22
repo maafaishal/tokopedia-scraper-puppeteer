@@ -1,5 +1,5 @@
 {
-  "name": "tokopedia-scraping-puppeteer",
+  "name": "tokopedia-scraper-puppeteer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
